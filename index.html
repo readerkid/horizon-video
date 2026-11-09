@@ -60,6 +60,12 @@
   .btn:hover { background: #232935; border-color: #39414f; transform: translateY(-1px); }
   .btn.primary { background: var(--accent); border-color: var(--accent); color: #0d1512; }
   .btn.primary:hover { background: #8ed3b1; border-color: #8ed3b1; }
+  .note {
+    margin: 16px 0 0; padding: 12px 16px; font-size: 13px; line-height: 1.5;
+    color: var(--muted); background: #14171d; border: 1px solid var(--border);
+    border-left: 3px solid var(--accent); border-radius: 10px;
+  }
+  .note code { font-size: 12px; color: var(--text); }
   footer {
     margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--border);
     color: var(--muted); font-size: 13px;
@@ -81,11 +87,14 @@
   </header>
 
   <div class="player">
+    <!-- youtube-nocookie.com keeps the player cookie-less on load; credentialless gives the
+         frame an empty, throwaway cookie jar so it can't pick up a signed-in YouTube session. -->
     <iframe
-      src="https://www.youtube.com/embed/53HgXJqyJtM?rel=0&amp;modestbranding=1"
+      credentialless
+      src="https://www.youtube-nocookie.com/embed/53HgXJqyJtM?rel=0&amp;modestbranding=1"
       title="10,000 people joined my rust minecraft in 36 days"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
+      referrerpolicy="no-referrer"
       allowfullscreen></iframe>
   </div>
 
@@ -94,8 +103,16 @@
     <span class="date">Published 9 November 2026</span>
   </div>
 
+  <p class="note">
+    Signed out by design: the player loads from <code>youtube-nocookie.com</code> inside a
+    <code>credentialless</code> frame — an empty, throwaway cookie jar — so it doesn't use your
+    signed-in Google account or write view history to it. Chrome, Edge and other Chromium browsers
+    110+ honour <code>credentialless</code>; Firefox and Safari ignore the attribute but already block
+    YouTube's third-party cookies, and the cookie-less domain is used everywhere.
+  </p>
+
   <div class="actions">
-    <a class="btn primary" href="https://www.youtube.com/watch?v=53HgXJqyJtM" target="_blank" rel="noopener">Watch on YouTube</a>
+    <a class="btn primary" href="https://www.youtube.com/watch?v=53HgXJqyJtM" target="_blank" rel="noopener noreferrer">Open on YouTube (uses your session)</a>
     <a class="btn" href="https://www.youtube.com/@lu4ovic/videos" target="_blank" rel="noopener">All videos</a>
     <a class="btn" href="https://playhorizon.dev/" target="_blank" rel="noopener">playhorizon.dev</a>
     <a class="btn" href="https://github.com/horizon-rust/horizon" target="_blank" rel="noopener">Horizon on GitHub</a>

@@ -7,4 +7,6 @@ A single static page that embeds the latest video from **ludovic** ([@lu4ovic](h
 
 GitHub Pages serves `index.html` from the `main` branch root. No build step, no dependencies.
 
+The player uses `youtube-nocookie.com` plus the `credentialless` iframe attribute, so the embed runs with an empty, throwaway cookie jar and starts signed out instead of picking up the viewer's Google session. `credentialless` is honoured by Chromium browsers 110+; elsewhere the cookie-less domain still applies, and Firefox/Safari block YouTube's third-party cookies anyway.
+
 To point the page at a newer upload, change the video ID in the `<iframe src>` and in the "Watch on YouTube" link, and update the title/date text.
