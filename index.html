@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- YouTube's player requires a Referer or it fails with error 153; origin only, never the path. -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Horizon — latest video from ludovic (@lu4ovic)</title>
 <meta name="description" content="Watch the newest video from ludovic (@lu4ovic), the author of Horizon, Minecraft: Java Edition rewritten in Rust.">
 <style>
@@ -94,7 +96,7 @@
       src="https://www.youtube-nocookie.com/embed/53HgXJqyJtM?rel=0&amp;modestbranding=1"
       title="10,000 people joined my rust minecraft in 36 days"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="no-referrer"
+      referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen></iframe>
   </div>
 
@@ -108,7 +110,8 @@
     <code>credentialless</code> frame — an empty, throwaway cookie jar — so it doesn't use your
     signed-in Google account or write view history to it. Chrome, Edge and other Chromium browsers
     110+ honour <code>credentialless</code>; Firefox and Safari ignore the attribute but already block
-    YouTube's third-party cookies, and the cookie-less domain is used everywhere.
+    YouTube's third-party cookies, and the cookie-less domain is used everywhere. The player does receive
+    this page's origin as a referrer — YouTube's player errors out with code 153 without one — but never the URL path.
   </p>
 
   <div class="actions">
